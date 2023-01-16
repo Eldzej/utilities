@@ -6,10 +6,7 @@ const styles = [
         elementType: 'geometry',
         stylers: [
             {
-                color: '#e9e9e9'
-            },
-            {
-                lightness: 17
+                color: '#ededed'
             }
         ]
     },
@@ -18,10 +15,7 @@ const styles = [
         elementType: 'geometry',
         stylers: [
             {
-                color: '#f5f5f5'
-            },
-            {
-                lightness: 20
+                color: '#f7f7f7'
             }
         ]
     },
@@ -31,9 +25,6 @@ const styles = [
         stylers: [
             {
                 color: '#ffffff'
-            },
-            {
-                lightness: 17
             }
         ]
     },
@@ -43,9 +34,6 @@ const styles = [
         stylers: [
             {
                 color: '#ffffff'
-            },
-            {
-                lightness: 29
             },
             {
                 weight: 0.2
@@ -58,9 +46,6 @@ const styles = [
         stylers: [
             {
                 color: '#ffffff'
-            },
-            {
-                lightness: 18
             }
         ]
     },
@@ -70,9 +55,6 @@ const styles = [
         stylers: [
             {
                 color: '#ffffff'
-            },
-            {
-                lightness: 16
             }
         ]
     },
@@ -81,10 +63,7 @@ const styles = [
         elementType: 'geometry',
         stylers: [
             {
-                color: '#f5f5f5'
-            },
-            {
-                lightness: 21
+                color: '#f7f7f7'
             }
         ]
     },
@@ -93,10 +72,7 @@ const styles = [
         elementType: 'geometry',
         stylers: [
             {
-                color: '#dedede'
-            },
-            {
-                lightness: 21
+                color: '#e5e5e5'
             }
         ]
     },
@@ -108,9 +84,6 @@ const styles = [
             },
             {
                 color: '#ffffff'
-            },
-            {
-                lightness: 16
             }
         ]
     },
@@ -118,13 +91,7 @@ const styles = [
         elementType: 'labels.text.fill',
         stylers: [
             {
-                saturation: 36
-            },
-            {
-                color: '#333333'
-            },
-            {
-                lightness: 40
+                color: '#858585'
             }
         ]
     },
@@ -142,9 +109,6 @@ const styles = [
         stylers: [
             {
                 color: '#f2f2f2'
-            },
-            {
-                lightness: 19
             }
         ]
     },
@@ -154,9 +118,6 @@ const styles = [
         stylers: [
             {
                 color: '#fefefe'
-            },
-            {
-                lightness: 20
             }
         ]
     },
@@ -168,9 +129,6 @@ const styles = [
                 color: '#fefefe'
             },
             {
-                lightness: 17
-            },
-            {
                 weight: 1.2
             }
         ]
@@ -179,15 +137,16 @@ const styles = [
 const buildStyles = (styles) => {
     return styles.map((val, idx) => {
         const { featureType, elementType, stylers } = val
+
         const feature = `feature:${featureType || 'all'}`
         const element = `element:${elementType || 'all'}`
         const styles = stylers.map(style => {
             const name = Object.keys(style)[0]
             const val = style[name].toString().replace('#', '0x')
             return `${name}:${val}`
-        })
+        }).join('%7C')
 
-        return `style=${encodeURIComponent(`${feature}|${element}|${styles}|`)}`
+        return `style=${`${feature}|${element}|${styles}|`}`
     }).join('&')
 }
 
