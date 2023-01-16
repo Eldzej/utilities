@@ -1,2 +1,5 @@
 # utilities
-Collection of various JS utilities I found to have need of
+Collection of various simple NodeJS scripts I found to have need of.
+
+Mostly stolen from all over the internet and slightly tweaked :)
+
