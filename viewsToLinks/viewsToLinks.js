@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = process.argv[2];
-const urlPrefix = process.argv[3] || '';
+const urlPrefix = process.argv[3] || '/';
 
 if(typeof rootDir !== 'undefined' && rootDir.length > 0) {
     buildLinkList(rootDir);
