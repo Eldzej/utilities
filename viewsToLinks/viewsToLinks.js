@@ -7,7 +7,7 @@ const urlPrefix = process.argv[3] || '';
 if(typeof rootDir !== 'undefined' && rootDir.length > 0) {
     buildLinkList(rootDir);
 } else {
-    console.error('You must set a path to the views directory')
+    console.error('You must set a path to the pages directory')
 }
 
 function buildLinkList(rootDir) {
@@ -32,7 +32,7 @@ function buildLinkList(rootDir) {
     const titles = [];
     jsonFiles.forEach(file => {
         const jsonData = JSON.parse(fs.readFileSync(path.join(rootDir, file)));
-        const title = jsonData.page?.title || '';
+        const title = jsonData.title ? jsonData.title : (jsonData.page?.title || '');
         titles.push({ title, file });
     });
 
